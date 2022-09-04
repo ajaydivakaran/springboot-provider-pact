@@ -25,7 +25,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'au.com.dius.pact.provider:junit5spring:4.3.13'
+	testImplementation 'au.com.dius.pact.provider:junit5spring:4.3.14'
 
 
 }

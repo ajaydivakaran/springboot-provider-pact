@@ -1,8 +1,10 @@
 package me.spike.springbootproviderpact;
 
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
+import au.com.dius.pact.provider.junitsupport.IgnoreNoPactsToVerify;
 import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
+import au.com.dius.pact.provider.junitsupport.loader.SelectorBuilder;
 import au.com.dius.pact.provider.spring.junit5.MockMvcTestTarget;
 import au.com.dius.pact.provider.spring.junit5.PactVerificationSpringProvider;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.when;
 @WebMvcTest
 @Provider("springboot-provider-pact")
 @PactBroker
+@IgnoreNoPactsToVerify
 class ContractVerificationTest {
 
     @Autowired
@@ -26,15 +29,27 @@ class ContractVerificationTest {
     @MockBean
     private GreetingService greetingService;
 
+    // Refer https://docs.pact.io/implementation_guides/jvm/provider/junit5
+    @au.com.dius.pact.provider.junitsupport.loader.PactBrokerConsumerVersionSelectors
+    public static SelectorBuilder consumerVersionSelectors() {
+        // Select Pacts for consumers deployed to production with branch from CI build
+        return new SelectorBuilder()
+                .branch("main");
+    }
+
     @TestTemplate
     @ExtendWith(PactVerificationSpringProvider.class)
     void pactVerificationTestTemplate(PactVerificationContext context) {
-        context.verifyInteraction();
+        if (context != null) {
+            context.verifyInteraction();
+        }
     }
 
     @BeforeEach
     void before(PactVerificationContext context) {
         when(greetingService.greet()).thenReturn(new Greeting("Hello world!!"));
-        context.setTarget(new MockMvcTestTarget(mockMvc));
+        if (context != null) {
+            context.setTarget(new MockMvcTestTarget(mockMvc));
+        }
     }
 }
