@@ -34,7 +34,7 @@ class ContractVerificationTest {
     public static SelectorBuilder consumerVersionSelectors() {
         // Select Pacts for consumers deployed to production with branch from CI build
         return new SelectorBuilder()
-                .branch("main");
+                .branch("feat123");
     }
 
     @TestTemplate

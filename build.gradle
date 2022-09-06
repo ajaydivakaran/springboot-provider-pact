@@ -33,6 +33,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 	//Reference - https://github.com/pact-foundation/pact-jvm/issues/1567
+	systemProperty "pact.provider.branch", "prov-feat123"
+	systemProperty "pact.provider.version", "commit3"
 	systemProperty "pact.verifier.publishResults",
 			project.hasProperty("pact.verifier.publishResults") ? project.getProperty("pact.verifier.publishResults")
 					: 'false'
