@@ -5,6 +5,9 @@
 
 
 ### To publish pact verification results
+
+#### using Gradle
+
 ```shell script
-./gradlew clean test pactVerify -Ppact.verifier.publishResults=true
+./gradlew clean test pactVerify -Pprovider.version=3.0.0 -Ppact.verifier.publishResults=true
 ```

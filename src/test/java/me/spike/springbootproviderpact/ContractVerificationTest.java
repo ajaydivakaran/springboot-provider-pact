@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 @Provider("springboot-provider-pact")
 @PactBroker
 @IgnoreNoPactsToVerify
-class ContractVerificationTest {
+public class ContractVerificationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +34,7 @@ class ContractVerificationTest {
     public static SelectorBuilder consumerVersionSelectors() {
         // Select Pacts for consumers deployed to production with branch from CI build
         return new SelectorBuilder()
-                .branch("feat123");
+                .branch("main");
     }
 
     @TestTemplate
