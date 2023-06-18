@@ -1,8 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.2'
-	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'org.springframework.boot' version '2.7.12'
+	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
-	id "au.com.dius.pact" version "4.3.10"
+	id "au.com.dius.pact" version "4.6.0"
 }
 
 group = 'me.spike'
@@ -25,8 +25,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'au.com.dius.pact.provider:junit5spring:4.3.14'
-
+	testImplementation 'au.com.dius.pact.provider:junit5spring:4.6.0'
 
 }
 
