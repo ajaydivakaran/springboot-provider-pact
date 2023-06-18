@@ -34,8 +34,8 @@ public class ContractVerificationTest {
     // Refer https://docs.pact.io/implementation_guides/jvm/provider/junit5
     @au.com.dius.pact.provider.junitsupport.loader.PactBrokerConsumerVersionSelectors
     public static SelectorBuilder consumerVersionSelectors() {
-        // Select Pacts for consumers deployed to production with branch from CI build
         return new SelectorBuilder()
+                //Refer https://kreuzwerker.de/en/post/integrating-contract-tests-into-build-pipelines-with-pact-broker-and
                 .deployedTo("prod")
                 .branch("main");
     }
